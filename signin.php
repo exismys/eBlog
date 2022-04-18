@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
           if ($row['email'] == $email && $row['password'] == $password) {
+              $_SESSION['authEblog'] = 'Yes';
               header("Location: add_article.php");
           } else {
               echo "<script>alert('Wrong email or password')</script>";

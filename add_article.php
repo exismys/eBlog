@@ -1,6 +1,12 @@
 <?php 
 include_once('database_connection.php');
 
+if ($_SESSION['authEblog'] == 'Yes') {
+    // ok
+} else {
+    header("Location: signin.php");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	//getting the post values
     $heading=$_POST['heading'];
