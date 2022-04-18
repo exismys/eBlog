@@ -16,9 +16,17 @@ include_once('header.php')
             $heading = $row['heading'];
             $date = $row['creationdate'];
             $content = $row['content'];
+            $authorid = $row['authorid'];
+
+            $authorResult = mysqli_query($con, "Select * from admins where id = $authorid");
+            if (mysqli_num_rows($authorResult) > 0) {
+                while ($row2 = mysqli_fetch_assoc($authorResult)) {
+                    $authorname = $row2['username'];
+                }
+            }
             echo "<h3>$heading</h3>";
                     
-            echo "<div class='info'><i>Posted by Ritesh on $date</i></div>";
+            echo "<div class='info'><i>Posted by $authorname on $date</i></div>";
 
             echo "<div class='body' style='margin-top:24px'>$content</div>";
         }

@@ -11,8 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $heading=$_POST['heading'];
     $content=$_POST['content'];
+    $userid = $_SESSION['cuserid'];
    
-    $query=mysqli_query($con, "insert into articles(heading, content, authorid) value('$heading', '$content', 1)");
+    $query=mysqli_query($con, "insert into articles(heading, content, authorid) value('$heading', '$content', $userid)");
 
     if ($query) {
         echo "<script>alert('You have successfully inserted the data');</script>";
@@ -24,7 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include_once('header.php'); ?>
 <section class="row">
     <div class="col-md-6 col-md-offset-3">
-        <header><h3>Add a new article</h3></header>
+        <?php 
+        $currentUser = $_SESSION['cuser'];
+        $userid = $_SESSION['cuserid'];
+        echo "<header><h3>Add a new article (Posting with user: $currentUser, with id: $userid)</h3></header>"; 
+        ?>
         <form action="" method="post">
             <div class="form-group">
                 <input class="text" name="heading" placeholder="Your Article Heading">

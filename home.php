@@ -19,8 +19,16 @@ include_once('header.php');
                 $postid = $row['id'];
                 $heading = $row['heading'];
                 $date = $row['creationdate'];
-                echo "<h4><a href='view_post.php?id=$postid'>$heading</a></h4><div class='info'>
-                <i>Posted by Ritesh on $date</i></div>";
+                $authorid = $row['authorid'];
+
+                $authorResult = mysqli_query($con, "Select * from admins where id = $authorid");
+                if (mysqli_num_rows($authorResult) > 0) {
+                    while ($row2 = mysqli_fetch_assoc($authorResult)) {
+                        $authorname = $row2['username'];
+                        echo "<h4><a href='view_post.php?id=$postid'>$heading</a></h4><div class='info'><i>Posted by $authorname on $date</i></div>";
+                    }
+                }
+                
             }
         } else {
             echo "0 results";

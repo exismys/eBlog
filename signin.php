@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email=$_POST['email'];
     $password=$_POST['password'];
 
-    $sql = "select email, password from admins where email = '$email'";
+    $sql = "select id, username, email, password from admins where email = '$email'";
 
     $result = mysqli_query($con, $sql);
 
@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while($row = mysqli_fetch_assoc($result)) {
             if ($row['email'] == $email && $row['password'] == $password) {
                 $_SESSION['authEblog'] = 'Yes';
+                $_SESSION['cuser'] = $row['username'];
+                $_SESSION['cuserid'] = $row['id'];
                 header("Location: add_article.php");
             } else {
                 echo "<script>alert('Wrong email or password')</script>";
