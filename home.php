@@ -8,6 +8,7 @@ include_once('header.php');
         <header><h3>Articles</h3></header>
         
         <div class="col-md-8 post" style="margin-bottom:24px">
+
         <?php
         $sql = "SELECT * FROM articles";
         $result = mysqli_query($con, $sql);
@@ -25,9 +26,7 @@ include_once('header.php');
             echo "0 results";
         }
         ?>
-        
     </div>
-</section>
-    
+</section> 
 </body>
 </html>

@@ -2,23 +2,22 @@
 include_once('database_connection.php');
 
 if ($_SESSION['authEblog'] == 'Yes') {
-    // ok
+    // pass
 } else {
     header("Location: signin.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  	//getting the post values
+
     $heading=$_POST['heading'];
     $content=$_POST['content'];
    
-  // Query for data insertion
-     $query=mysqli_query($con, "insert into articles(heading, content, authorid) value('$heading', '$content', 1)");
+    $query=mysqli_query($con, "insert into articles(heading, content, authorid) value('$heading', '$content', 1)");
 
     if ($query) {
-    echo "<script>alert('You have successfully inserted the data');</script>";
+        echo "<script>alert('You have successfully inserted the data');</script>";
     } else {
-      echo "<script>alert('Something Went Wrong. Please try again');</script>";
+        echo "<script>alert('Something Went Wrong. Please try again');</script>";
     }
 }
 
@@ -28,7 +27,7 @@ include_once('header.php'); ?>
         <header><h3>Add a new article</h3></header>
         <form action="" method="post">
             <div class="form-group">
-                    <input class="text" name="heading" placeholder="Your Article Heading">
+                <input class="text" name="heading" placeholder="Your Article Heading">
             </div>
             <div class="form-group">
                 <textarea class="form-control" name="content" rows="5" placeholder="Your Article"></textarea>
