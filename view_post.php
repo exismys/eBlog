@@ -29,6 +29,11 @@ include_once('header.php')
             echo "<div class='info'><i>Posted by $authorname on $date</i></div>";
 
             echo "<div class='body' style='margin-top:24px'>$content</div>";
+
+            if ($_SESSION['cuser'] == $authorname) {
+                echo "<a href='delete_post.php?id=$postid'>Delete</a>";
+            }
+            
         }
     } else {
         echo "0 results";
